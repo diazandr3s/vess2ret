@@ -57,6 +57,7 @@ class TwoImageIterator(Iterator):
             random.shuffle(self.filenames)
             self.filenames = self.filenames[:N]
         self.N = len(self.filenames)
+
         if self.N == 0:
             raise Exception("""Did not find any pair in the dataset. Please check that """
                             """the names and extensions of the pairs are exactly the same. """
@@ -153,6 +154,7 @@ class TwoImageIterator(Iterator):
             return a, b
 
         fname = self.filenames[idx]
+
 
         a = load_img(os.path.join(self.a_dir, fname),
                      grayscale=self.is_a_grayscale,

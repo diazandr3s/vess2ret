@@ -5,7 +5,10 @@ import getopt
 
 import numpy as np
 import models as m
+import matplotlib
+matplotlib.use('Agg') # this is for saving the images using a non-interactive backend Agg
 import matplotlib.pyplot as plt
+
 import util.util as u
 
 from util.data import TwoImageIterator

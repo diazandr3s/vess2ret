@@ -1,3 +1,19 @@
+
+
+Requirements:
+
+
+Pyhton 2.7
+Tensorflow 1.4.1
+pip install tqdm
+pip install keras (The provided weights were generated from Keras version 1.2.2 and he is not sure if they are still valid on Keras 2. If you want to use those weights he advise using Keras 1.2.2.)
+pip install seaborn
+pip install pillow
+pip install matplotlib
+
+
+
+
 # Towards Adversarial Retinal Image Synthesis
 
 [Arxiv](https://arxiv.org/abs/1701.08974) [Demo](http://vess2ret.inesctec.pt)
