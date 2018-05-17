@@ -4,11 +4,17 @@ Requirements:
 
 
 Pyhton 2.7
+
 Tensorflow-gpu 1.4.1 (Pay attention to this version. It has to be the gpu version.)
+
 pip install tqdm
+
 pip install keras (The provided weights were generated from Keras version 1.2.2 and he is not sure if they are still valid on Keras 2. If you want to use those weights he advise using Keras 1.2.2.)
+
 pip install seaborn
+
 pip install pillow
+
 pip install matplotlib
 
 
