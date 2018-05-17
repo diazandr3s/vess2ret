@@ -4,7 +4,7 @@ Requirements:
 
 
 Pyhton 2.7
-Tensorflow 1.4.1
+Tensorflow-gpu 1.4.1 (Pay attention to this version. It has to be the gpu version.)
 pip install tqdm
 pip install keras (The provided weights were generated from Keras version 1.2.2 and he is not sure if they are still valid on Keras 2. If you want to use those weights he advise using Keras 1.2.2.)
 pip install seaborn
@@ -20,8 +20,6 @@ pip install matplotlib
 
 We use an image-to-image translation technique based on the idea of adversarial learning to synthesize eye fundus images directly from data. We pair true eye fundus images with their respective vessel trees, by means of a vessel segmentation technique. These pairs are then used to learn a mapping from a binary vessel tree to a new retinal image.
 
-<img src="images/image_collage_extended.jpg" width="1200px"/>
-
 
 ## How it works
 - Get pairs of binary retinal vessel trees and corresponding retinal images
@@ -34,10 +32,6 @@ We use an image-to-image translation technique based on the idea of adversarial 
 
 - Test the model.
    The model is now able to synthesize a new retinal image from any given vessel tree.
-
-<p align="center">
- <img src="images/gen_method.png" width="600px"/>
-</p>
 
 ## Setup
 
