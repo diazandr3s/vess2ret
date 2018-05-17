@@ -11,6 +11,8 @@ from keras.optimizers import Adam
 from util.data import TwoImageIterator
 from util.util import MyDict, log, save_weights, load_weights, load_losses, create_expt_dir
 
+print >> sys.stderr, "All modules loaded"
+
 
 def print_help():
     """Print how to use this script."""
@@ -222,6 +224,11 @@ def train(models, it_train, it_val, params):
     # Get the output shape of the discriminator
     dout_size = d.output_shape[-2:]
     # Define the data generators
+    print >> sys.stderr, "HERE THE MODELS  "
+    print >> sys.stderr, models.atob.summary
+    print >> sys.stderr, models.d.summary()
+    print >> sys.stderr, models.p2p.summary()
+
     generators = generators_creation(it_train, it_val, models, dout_size)
 
     # Define the number of samples to use on each training epoch
@@ -240,6 +247,8 @@ def train(models, it_train, it_val, params):
         losses = load_losses(log_dir=params.log_dir, expt_name=params.expt_name)
 
     for e in tqdm(range(params.epochs)):
+
+        print >> sys.stderr, 'INSIDE THE TRAIN ITERATION'
 
         for b in range(batches_per_epoch):
             train_iteration(models, generators, losses, params)
@@ -322,17 +331,24 @@ if __name__ == '__main__':
     dopt = Adam(lr=params.lr, beta_1=params.beta_1)
 
     # Define the U-Net generator
+    print >> sys.stderr, "Defining the U-Net generator"
     unet = m.g_unet(params.a_ch, params.b_ch, params.nfatob,
                     batch_size=params.batch_size, is_binary=params.is_b_binary)
 
+    print >> sys.stderr, unet.summary()
+
     # Define the discriminator
+    print >> sys.stderr, "Defining the discriminator"
     d = m.discriminator(params.a_ch, params.b_ch, params.nfd, opt=dopt)
+
+    print >> sys.stderr, d.summary()
 
     if params.continue_train:
         load_weights(unet, d, log_dir=params.log_dir, expt_name=params.expt_name)
 
     ts = params.target_size
     train_dir = os.path.join(params.base_dir, params.train_dir)
+    print >> sys.stderr, "Creating the iterators"
     it_train = TwoImageIterator(train_dir,  is_a_binary=params.is_a_binary,
                                 is_a_grayscale=params.is_a_grayscale,
                                 is_b_grayscale=params.is_b_grayscale,

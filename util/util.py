@@ -4,11 +4,15 @@ import json
 from errno import EEXIST
 
 import numpy as np
-import seaborn as sns
+# seaborn generates a problem with PyQt something
+#import seaborn as sns
 import cPickle as pickle
+
+import matplotlib
+matplotlib.use('Agg') # this is for saving the images using a non-interactive backend Agg
 import matplotlib.pyplot as plt
 
-sns.set()
+#sns.set()
 
 DEFAULT_LOG_DIR = 'log'
 ATOB_WEIGHTS_FILE = 'atob_weights.h5'

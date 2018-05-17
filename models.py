@@ -440,9 +440,7 @@ def g_unet(in_ch, out_ch, nf, batch_size=1, is_binary=False, name='unet'):
     x = LeakyReLU(0.2)(conv9)
     # nf*8 x 1 x 1
 
-    dconv1 = Deconvolution(nf * 8,
-                           get_deconv_shape(batch_size, nf * 8, 2, 2),
-                           k=2, s=1)(x)
+    dconv1 = Deconvolution(nf * 8, get_deconv_shape(batch_size, nf * 8, 2, 2), k=2, s=1)(x)
     dconv1 = BatchNorm()(dconv1)
     dconv1 = Dropout(0.5)(dconv1)
 
@@ -451,24 +449,21 @@ def g_unet(in_ch, out_ch, nf, batch_size=1, is_binary=False, name='unet'):
     x = LeakyReLU(0.2)(x)
     # nf*(8 + 8) x 2 x 2
 
-    dconv2 = Deconvolution(nf * 8,
-                           get_deconv_shape(batch_size, nf * 8, 4, 4))(x)
+    dconv2 = Deconvolution(nf * 8, get_deconv_shape(batch_size, nf * 8, 4, 4))(x)
     dconv2 = BatchNorm()(dconv2)
     dconv2 = Dropout(0.5)(dconv2)
     x = concatenate_layers([dconv2, conv7], **merge_params)
     x = LeakyReLU(0.2)(x)
     # nf*(8 + 8) x 4 x 4
 
-    dconv3 = Deconvolution(nf * 8,
-                           get_deconv_shape(batch_size, nf * 8, 8, 8))(x)
+    dconv3 = Deconvolution(nf * 8, get_deconv_shape(batch_size, nf * 8, 8, 8))(x)
     dconv3 = BatchNorm()(dconv3)
     dconv3 = Dropout(0.5)(dconv3)
     x = concatenate_layers([dconv3, conv6], **merge_params)
     x = LeakyReLU(0.2)(x)
     # nf*(8 + 8) x 8 x 8
 
-    dconv4 = Deconvolution(nf * 8,
-                           get_deconv_shape(batch_size, nf * 8, 16, 16))(x)
+    dconv4 = Deconvolution(nf * 8, get_deconv_shape(batch_size, nf * 8, 16, 16))(x)
     dconv4 = BatchNorm()(dconv4)
     x = concatenate_layers([dconv4, conv5], **merge_params)
     x = LeakyReLU(0.2)(x)

@@ -50,6 +50,7 @@ def save_pix2pix(unet, it, path, params):
     for i, filename in enumerate(it.filenames):
         a, b = next(it)
         bp = unet.predict(a)
+
         bp = convert_to_rgb(bp[0], is_binary=params.is_b_binary)
 
         img = compose_imgs(a[0], b[0], is_a_binary=params.is_a_binary, is_b_binary=params.is_b_binary)
